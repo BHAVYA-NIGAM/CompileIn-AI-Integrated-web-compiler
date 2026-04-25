@@ -10,10 +10,9 @@ import {
 } from "react-icons/fa";
 import { BsApple } from "react-icons/bs";
 import { ToastContainer, toast } from "react-toastify";
-import newlogo from './../../src/assets/newlogo.png';
-import cmpltlogo from './../../src/assets/cmplt-logo.png';
-import LiquidEther from './LiquidEther';
-
+import newlogo from "./../../src/assets/newlogo.png";
+import cmpltlogo from "./../../src/assets/cmplt-logo.png";
+import LiquidEther from "./LiquidEther";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -61,11 +60,14 @@ const Login = () => {
       return;
     }
     try {
-      const response = await fetch("http://localhost:8000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        },
+      );
 
       const data = await response.json();
 
@@ -86,7 +88,7 @@ const Login = () => {
     <div className="relative w-full h-screen flex items-center justify-center bg-[#000613]">
       <div className="w-full h-full absolute">
         <LiquidEther
-          colors={['#5227FF', '#16abe1', '#a3aacc']}
+          colors={["#5227FF", "#16abe1", "#a3aacc"]}
           mouseForce={20}
           cursorSize={100}
           isViscous={false}
@@ -108,9 +110,20 @@ const Login = () => {
         style={{ boxShadow: "0 0 15px 3px #335976ff" }}
       >
         <div className="w-full p-6 bg-gray-900 flex-col flex items-center gap-3 rounded-xl shadow-lg">
-          <a href="/compilein/" className='flex justify-center active:scale-95 items-center'>
-            <img className='logo w-[22px] md:w-[38px]' src={newlogo} alt="logo" />
-            <img className='logo w-[120px] md:w-[150px] mt-1' src={cmpltlogo} alt="logo" />
+          <a
+            href="/compilein/"
+            className="flex justify-center active:scale-95 items-center"
+          >
+            <img
+              className="logo w-[22px] md:w-[38px]"
+              src={newlogo}
+              alt="logo"
+            />
+            <img
+              className="logo w-[120px] md:w-[150px] mt-1"
+              src={cmpltlogo}
+              alt="logo"
+            />
           </a>
           <h1 className="text-lg md:text-xl font-semibold">Welcome Back</h1>
           <p className="text-xs md:text-sm text-gray-500 text-center">
@@ -135,7 +148,6 @@ const Login = () => {
                 className="bg-transparent border-0 w-full outline-none text-sm md:text-base"
               />
             </div>
-
             <div className="w-full flex items-center gap-2 bg-gray-800 p-2 rounded-xl relative">
               <FaFingerprint />
               <input
@@ -159,7 +171,8 @@ const Login = () => {
               )}
             </div>
             {error && <p className="text-red-500 text-xs">{error}</p>}
-          </div>
+                      
+          </div>
 
           <button
             onClick={handleLogin}

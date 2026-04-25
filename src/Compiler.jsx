@@ -536,7 +536,9 @@ console.log("Hello, World!");`,
   useEffect(() => {
     const id = localStorage.getItem("userId");
     // console.log("Check for repeated print " + id);
-    fetch("http://localhost:8000/api/find/getUser/" + encodeURIComponent(id))
+    fetch(
+      `${import.meta.env.VITE_API_URL}/api/find/getUser/` + encodeURIComponent(id),
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

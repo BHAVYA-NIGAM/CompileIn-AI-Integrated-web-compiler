@@ -10,10 +10,9 @@ import {
 import { BsApple } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
-import newlogo from './../../src/assets/newlogo.png';
-import cmpltlogo from './../../src/assets/cmplt-logo.png';
-import LiquidEther from './LiquidEther';
-
+import newlogo from "./../../src/assets/newlogo.png";
+import cmpltlogo from "./../../src/assets/cmplt-logo.png";
+import LiquidEther from "./LiquidEther";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -62,7 +61,6 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-
   const handleSignup = async (e) => {
     // e.preventDefault();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -78,11 +76,14 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, confirmPassword }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/signup`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password, confirmPassword }),
+        },
+      );
 
       const data = await response.json();
 
@@ -106,25 +107,25 @@ const Signup = () => {
 
   return (
     <div className="w-full h-screen flex items-center justify-center bg-[#000613]">
-     <div className="w-full h-full absolute">
-             <LiquidEther
-               colors={['#5227FF', '#16abe1', '#a3aacc']}
-               mouseForce={20}
-               cursorSize={100}
-               isViscous={false}
-               viscous={30}
-               iterationsViscous={32}
-               iterationsPoisson={32}
-               resolution={0.5}
-               isBounce={false}
-               autoDemo={true}
-               autoSpeed={0.5}
-               autoIntensity={2.2}
-               takeoverDuration={0.25}
-               autoResumeDelay={3000}
-               autoRampDuration={0.6}
-             />
-           </div>
+      <div className="w-full h-full absolute">
+        <LiquidEther
+          colors={["#5227FF", "#16abe1", "#a3aacc"]}
+          mouseForce={20}
+          cursorSize={100}
+          isViscous={false}
+          viscous={30}
+          iterationsViscous={32}
+          iterationsPoisson={32}
+          resolution={0.5}
+          isBounce={false}
+          autoDemo={true}
+          autoSpeed={0.5}
+          autoIntensity={2.2}
+          takeoverDuration={0.25}
+          autoResumeDelay={3000}
+          autoRampDuration={0.6}
+        />
+      </div>
       <div
         className="p-1 rounded-2xl w-[95%] max-w-md relative z-10 bg-[#101828]"
         style={{ boxShadow: "0 0 15px 3px #335976ff" }}
@@ -155,7 +156,6 @@ const Signup = () => {
               Login
             </Link>
           </p>
-
           <div className="w-full flex flex-col gap-3 mt-2">
             <div className="w-full flex items-center gap-2 bg-gray-800 p-2 rounded-xl">
               <MdAlternateEmail />
@@ -205,14 +205,12 @@ const Signup = () => {
             </div>
             {error && <p className="text-red-500 text-xs">{error}</p>}
           </div>
-
           <button
             onClick={handleSignup}
             className="w-full p-2 bg-green-500 rounded-xl mt-3 hover:bg-green-600 text-sm md:text-base text-white"
           >
             Sign Up
           </button>
-
           <div className="relative w-full flex items-center justify-center py-3">
             <div className="w-2/5 h-[2px] bg-gray-800"></div>
             <h3 className="font-lora text-xs md:text-sm px-4 text-gray-500">
@@ -220,7 +218,6 @@ const Signup = () => {
             </h3>
             <div className="w-2/5 h-[2px] bg-gray-800"></div>
           </div>
-
           <div className="w-full flex items-center justify-evenly md:justify-between gap-2 mt-2">
             <div className="p-2 md:px-6 lg:px-10 bg-slate-700 cursor-pointer rounded-xl hover:bg-slate-800">
               <BsApple className="text-lg md:text-xl" />
@@ -233,7 +230,8 @@ const Signup = () => {
               <FaFacebookF className="text-lg md:text-xl" />
             </div>
           </div>
-        </div>
+                  
+        </div>
       </div>
       <ToastContainer />
     </div>
