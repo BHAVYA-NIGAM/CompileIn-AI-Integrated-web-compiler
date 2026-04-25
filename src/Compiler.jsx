@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Editor from "@monaco-editor/react";
-import "./Compilerstyle.css";
+import "./compilerstyle.css";
 import profile from "./pics/profile.png";
 import copy from "./pics/copy.png";
 import terminal from "./pics/terminal.png";
@@ -537,7 +537,8 @@ console.log("Hello, World!");`,
     const id = localStorage.getItem("userId");
     // console.log("Check for repeated print " + id);
     fetch(
-      `${import.meta.env.VITE_API_URL}/api/find/getUser/` + encodeURIComponent(id),
+      `${import.meta.env.VITE_API_URL}/api/find/getUser/` +
+        encodeURIComponent(id),
     )
       .then((res) => res.json())
       .then((data) => {
