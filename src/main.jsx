@@ -31,6 +31,10 @@ const router = createBrowserRouter([
     path: "/compiler",
     element: <App />,
   },
+  {
+    path: "*",
+    element: <App3 />   // ya koi NotFound page
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
